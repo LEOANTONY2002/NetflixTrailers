@@ -6,12 +6,20 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const history = useHistory();
+  const [alert, setAlert] = useState(false);
+  const [em, setEm] = useState("");
+  const [mes, setMes] = useState("");
 
   const login = () => {
+    auth.signInWithEmailAndPassword(email, pw).then(() => history.push("/"));
+  };
+
+  const forgotPass = (e, em) => {
+    e.preventDefault();
     auth
-      .signInWithEmailAndPassword(email, pw)
-      .then(() => history.push("/"))
-      .catch((err) => alert(err.message));
+      .sendPasswordResetEmail(em)
+      .then((user) => setMes("Please check your Email " + em))
+      .catch((err) => setMes("Enter valid email", err.message));
   };
 
   return (
@@ -43,9 +51,26 @@ function Signup() {
           />
           <button onClick={login}>Sign In</button>
 
-          <p>
-            New to Netflix? <Link to="/">Sign up now</Link>
-          </p>
+          <div className="s-pas">
+            <p>
+              New to Netflix? <Link to="/">Sign up now</Link>
+            </p>
+            <p onClick={() => setAlert(true)}>Forgot password</p>
+          </div>
+          {alert && (
+            <form>
+              Email
+              <input
+                type="email"
+                value={em}
+                onChange={(e) => setEm(e.target.value)}
+              />
+              <button onClick={(e) => forgotPass(e, em)}>
+                SEND RESET LINK
+              </button>
+            </form>
+          )}
+          {mes && <p>{mes}</p>}
         </div>
       </div>
     </div>

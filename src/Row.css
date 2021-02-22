@@ -4,7 +4,7 @@
 }
 
 .posters {
-  display: flex;
+  display: flex !important;
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px 0px;
@@ -18,9 +18,9 @@
 
 .poster {
   object-fit: contain;
-  width: 100%;
+  width: 150px;
   max-height: 100px;
-  margin: 1%;
+  margin: 5px;
   transition: transform 450ms;
 }
 
@@ -61,6 +61,6 @@
 }
 
 .loading {
-  margin-left: 45%;
+  margin-left: 43%;
   align-items: center;
 }

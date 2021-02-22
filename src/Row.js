@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "./axios";
 import "./Row.css";
 import Youtube from "react-youtube";
-import youtube from "./youtube";
+import youtube, { KEY } from "./youtube";
 import { db } from "./firebase";
 import firebase from "firebase";
 import { useStateValue } from "./StateProvider";
+import { imdb } from "./request";
+import Axios from "axios";
 
 const img_url = "https://image.tmdb.org/t/p/original/";
 export const opts = {
@@ -25,13 +27,13 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
   const [isLarge, setIsLarge] = useState(false);
   const [isLoad, setIsLoad] = useState(false);
   const [isErr, setIsErr] = useState(false);
+  const [rev, setRev] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       const resp = await axios.get(fetchUrl);
       setMovies(resp.data.results);
       console.log(resp.data.results);
-      return resp;
     }
     fetchData();
   }, [fetchUrl]);
@@ -82,17 +84,22 @@ const Row = ({ title, fetchUrl, isLargeRow }) => {
       <h2>{title}</h2>
       <div className="posters">
         {movies.map((movie) => (
-          <img
-            key={movie.id}
-            className={`poster ${isLargeRow && "poster_large"}`}
-            src={`${img_url}${
-              isLargeRow ? movie.poster_path : movie.backdrop_path
-            }`}
-            alt={movie.title}
-            onClick={() => handleClick(movie)}
-          />
+          <div>
+            {movie.poster_path !== null && (
+              <img
+                key={movie.id}
+                className={`poster ${isLargeRow && "poster_large"}`}
+                src={`${img_url}${
+                  isLargeRow ? movie.poster_path : movie.backdrop_path
+                }`}
+                alt={movie.title}
+                onClick={() => handleClick(movie)}
+              />
+            )}
+          </div>
         ))}
       </div>
+      {rev && <div className="review"></div>}
       {isLoad && (
         <div className="loading">
           <div className="loader"></div>

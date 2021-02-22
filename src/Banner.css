@@ -1,8 +1,14 @@
+.full {
+  height: max-content !important;
+}
+
 .banner {
   color: white;
   object-fit: contain;
-  height: 448px;
-  margin-bottom: 10%;
+  margin-bottom: 20px;
+}
+.new {
+  height: max-content !important;
 }
 
 .content {
@@ -61,4 +67,35 @@
     rgba(37, 37, 37, 0.61),
     #111
   );
+}
+
+.search {
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.inp {
+  display: flex;
+  align-items: center;
+}
+.inp > input {
+  width: 65vw;
+  height: 45px;
+  border: 1px solid red;
+  color: red;
+  outline: none;
+  background: transparent;
+  border-radius: 50px;
+  margin-right: 10px;
+  text-indent: 13px;
+  font-size: 20px;
+}
+.inp > button {
+  height: 45px;
+  width: 20vw;
+}
+.inp > input:focus,
+.btn-2:focus {
+  outline: none;
 }

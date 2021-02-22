@@ -1,7 +1,7 @@
 import Nav from "./Nav";
 import Banner from "./Banner";
 import Row from "./Row";
-import req from "./request";
+import req, { imdb } from "./request";
 import "./App.css";
 import { auth } from "./firebase";
 import { useEffect, useState } from "react";
@@ -105,42 +105,56 @@ function App() {
                 <Row
                   title="NETFLIX ORIGINALS"
                   fetchUrl={req.fetchOriginals}
+                  rating={imdb}
                   isLargeRow
                 />
                 <Row
                   user={user}
                   title="Trending Now"
                   fetchUrl={req.fetchTrending}
+                  rating={imdb}
+                />
+                <Row
+                  user={user}
+                  title="Upcoming"
+                  fetchUrl={req.fetchUpcoming}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Top Rated"
                   fetchUrl={req.fetchTopRated}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Action Movies"
                   fetchUrl={req.fetchAction}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Comedy Movies"
                   fetchUrl={req.fetchComedy}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Horror Movies"
                   fetchUrl={req.fetchHorror}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Romance Movies"
                   fetchUrl={req.fetchRomance}
+                  rating={imdb}
                 />
                 <Row
                   user={user}
                   title="Documenteries"
                   fetchUrl={req.fetchDocumentaries}
+                  rating={imdb}
                 />
               </div>
             )}
